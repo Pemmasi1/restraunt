@@ -2,14 +2,14 @@ from langchain_openai import OpenAI
 from langchain.prompts import PromptTemplate
 from dotenv import load_dotenv
 import os
+import streamlit as st
 
 # Load API key from .env
 load_dotenv()
-api_key = os.getenv("OPENAI_API_KEY")
-if not api_key:
-    raise ValueError("OPENAI_API_KEY is not set in .env file.")
+# Get OpenAI API key from Streamlit secrets
+api_key = st.secrets["OPENAI_API_KEY"]
 
-# Set environment variable
+# Set environment variable for LangChain/OpenAI
 os.environ["OPENAI_API_KEY"] = api_key
 
 # Initialize LLM
